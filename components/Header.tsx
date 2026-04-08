@@ -3,23 +3,26 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {LinearGradient} from 'expo-linear-gradient'
 import { Link } from 'expo-router'
+import useTheme, { colorScheme } from '@/hooks/useTheme'
 function Timer(){
      const  time = new Date().getHours()
+     const {colors} = useTheme()
    if(time < 12){
     return(
-    <Text style={styles.timeText}>
+
+    <Text style={[styles.timeText, { color: colors.text }]}>
         Good Morning</Text>
 ) 
    }
    else if (time < 18){
     return(
-        <Text style={styles.timeText}>
+        <Text style={[styles.timeText, { color: colors.text }]}>
         Good Afternoon</Text>   
     )
 }
 else{
     return(
-        <Text style={styles.timeText}>
+       <Text style={[styles.timeText, { color: colors.text }]}>
         Good Evening</Text>   
     )
 }
@@ -27,9 +30,9 @@ else{
 
 
 export default function Header() {
-  
+  const {colors} = useTheme()
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor:colors.bg}}>
     <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between',
      padding:10}}>
     <View style={{flexDirection:'row', alignItems:'center', gap:10}}>
@@ -38,11 +41,11 @@ export default function Header() {
     </View>
       
     <View style={{flexDirection:'row', alignItems:'center', gap:10}}>
-        <TouchableOpacity style={{backgroundColor:"#fafafa", padding:5}}>
-            <Ionicons name='notifications' size={25} color='#000' />
+        <TouchableOpacity style={{backgroundColor:colors.bg, padding:5}}>
+            <Ionicons name='notifications' size={25} color={colors.text} />
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:"#fafafa", padding:5}}>
-            <Ionicons name='settings' size={25} color='#000' />
+        <TouchableOpacity style={{backgroundColor:colors.bg, padding:5}}>
+            <Ionicons name='settings' size={25} color={colors.text}/>
         </TouchableOpacity>
     </View>
      </View>

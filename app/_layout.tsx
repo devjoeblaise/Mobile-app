@@ -1,12 +1,26 @@
 import { Stack } from "expo-router";
+import { ThemeProvider } from "@/hooks/useTheme";
 import "./global.css";
+import { useState } from "react";
 export default function RootLayout() {
-  return <Stack screenOptions={{
+  const [isauthenticated, setIsAuthenticated] = useState<boolean>(false)
+  return (
+  <ThemeProvider>
+  <Stack screenOptions={{
     headerShown:false
   }}>
-    <Stack.Screen
-    name="(tabs)"
+    {!isauthenticated ?(
+      <Stack.Screen
+    name="(auth)"
   />
+    ):(
+     <Stack.Screen
+    name="(tabs)"
+  /> 
+    )
+    }
+    
   </Stack >;
-
+  </ThemeProvider>
+  );
 }

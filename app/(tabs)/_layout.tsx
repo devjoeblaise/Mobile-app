@@ -1,16 +1,18 @@
 import { Tabs } from "expo-router"
 import { Ionicons } from '@expo/vector-icons';
 import { View, Text} from "react-native";
+import useTheme from "@/hooks/useTheme";
 
 
 
 interface TabBarProps{
         focused:boolean,
-        name:string,
+        name:React.ComponentProps<typeof Ionicons>['name'],
         title:string
     }    
        
 const TabBar = ({focused, name, title}:TabBarProps)=>{
+    const {colors} = useTheme()
 if(focused){
     return(
         <View
@@ -34,11 +36,12 @@ return(
 } 
 
 export default function TabLayout() {
+    const {colors} = useTheme()
     return (
         <Tabs screenOptions={{
             headerShown:false,
             tabBarStyle:{
-                backgroundColor: "#888",
+                backgroundColor: colors.Backgrounds.editInput,
                 borderRadius:50,
                 position:"absolute",
                 bottom:40,
